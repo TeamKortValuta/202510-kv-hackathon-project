@@ -1,10 +1,12 @@
 module Api do
-    class UsersController < ActionController::Base
+    class EventsController < ActionController::Base
 
         def index
+            events = Event.all
         end
 
         def show
+            
         end
 
         def reserve
