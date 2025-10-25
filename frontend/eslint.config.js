@@ -49,7 +49,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       complexity: ['error', 20],
-      'linebreak-style': ['error', 'unix'],
+      'linebreak-style': ['error', 'windows | unix'],
       'react/react-in-jsx-scope': 'off', // Not needed with React 17+
       'react/prop-types': 'off', // Not needed with TypeScript
       'unused-imports/no-unused-imports': 'error',

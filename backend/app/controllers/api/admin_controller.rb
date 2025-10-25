@@ -20,7 +20,6 @@ module Api
             if event_user.nil?
                 render json: { "result": "not found" }, status: :not_found
             else
-                user = User.find_by(id: event_user.user_id)
                 data = {
                     is_ok: true,
                     user_name: user.name
