@@ -24,8 +24,8 @@ module Api do
             else
                 user = User.find_by(id: event_user.user_id)
                 data = {
-                    :is_ok: true,
-                    :user_name: user.name
+                    :is_ok => true,
+                    :user_name => user.name
                 }
                 render json: data.to_json()
             end
