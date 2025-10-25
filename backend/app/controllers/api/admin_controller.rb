@@ -18,11 +18,11 @@ module Api do
 
         def verify_event_code
             event_user = Event_Users.find_by(invitation_code: params[:invitation_code])
-            if event_user.nil?
+            user = User.find_by(id: event_user.user_id)
+            if event_user.nil? || user.nil?
                 render 'shared/http_status', locals: { code: '404', message:
                     HttpStatusHelper::ERROR_CODE['message']['404'] }, status: :not_found
             else
-                user = User.find_by(id: event_user.user_id)
                 data = {
                     :is_ok => true,
                     :user_name => user.name
