@@ -3,17 +3,20 @@ import type { EventModel } from "../models/EventModel";
 import devRootUrl from "../models/ServerVars";
 import { Loading } from "./Loading";
 import { ErrorMessage } from "./ErrorMessage";
+import { useParams } from "react-router";
 
 export const Event = (): React.ReactElement => {
     const [hasError, setHasError] = useState(false);
     const [event, setEvent] = useState<EventModel>();
+
+    const param = useParams();
 
     // API Call for single event on init
     useEffect(() => {
         const listUrl = devRootUrl;
         try {
             async () => {
-                const res = await fetch(listUrl);
+                const res = await fetch(listUrl + 'events/' + param.eventId);
                 setEvent(await res.json());
             }
             setEvent({date: new Date(), id: 1, info: "Test", name: "Test"});
