@@ -1,10 +1,14 @@
-import './App.css'
+import React from "react";
+import EventLists from "./components/EventLists";
 
- export const App =(): React.ReactElement => {
 
+
+const App: React.FC = () => {
   return (
-    <>
+    <div className="w-full min-h-screen bg-gray-100">
+      <EventLists />
+    </div>
+  );
+};
 
-    </>
-  )
-}
+export default App;
