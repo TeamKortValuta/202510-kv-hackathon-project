@@ -1,37 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
+import { CreateEvent } from './components/CreateEvent'
+import { EventList } from './components/EventLists'
+import { Event } from './components/Event'
+import { Invite } from './components/Invite'
 
  export const App =(): React.ReactElement => {
-  const [count, setCount] = useState(0)
-
-  const incrementCount = () => {
-    setCount((count) => count + 1)
-  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={incrementCount}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<EventList/>}></Route>
+          <Route path="/event/:eventId" element={<Event/>}></Route>
+          <Route path="/createEvent" element={<CreateEvent/>}></Route>
+          <Route path="/invite" element={<Invite/>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
