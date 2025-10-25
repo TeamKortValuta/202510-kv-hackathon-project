@@ -2,12 +2,18 @@ module Api do
     class AdminController < ActionController::Base
 
         def create_event 
-
-            Event.create()
-
-
-            render 'shared/http_status', locals: { code: '201', message:
-                HttpStatusHelper::ERROR_CODE['message']['201'] }, status: :created
+            begin
+                created_event = Event.create!(
+                    name: params[:name]
+                    date: params[:date]
+                    info: params[:info]
+                )
+                render 'shared/http_status', locals: { code: '201', message:
+                    HttpStatusHelper::ERROR_CODE['message']['201'] }, status: :created
+            rescue Exception
+                render 'shared/http_status', locals: { code: '500', message:
+                    HttpStatusHelper::ERROR_CODE['message']['500'] }, status: :error
+            end
         end
 
         def verify_event_code
