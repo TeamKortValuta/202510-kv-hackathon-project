@@ -36,6 +36,16 @@ module RailsApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    ## CORS setting
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*",
+          headers: :any,
+          methods: [ :get, :post, :put, :patch, :delete, :options, :head ]
+      end
+    end
+
     # Don't generate system test files.
     config.generators.system_tests = nil
   end
