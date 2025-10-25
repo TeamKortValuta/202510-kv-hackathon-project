@@ -1,0 +1,30 @@
+{
+  "name": "backend-devcontainer",
+  "dockerComposeFile": [
+    "./docker-compose.yml"
+  ],
+  "service": "app",
+  "runServices": [
+    "app",
+    "db"
+  ],
+  "overrideCommand": true,
+  "updateRemoteUserUID": false,
+  "workspaceFolder": "/workspace/rails-app",
+  "postCreateCommand": "ruby --version",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "extensions.verifySignature": false
+      },
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  "remoteUser": "ruby",
+  "shutdownAction": "stopCompose"
+}

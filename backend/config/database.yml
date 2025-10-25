@@ -1,0 +1,42 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
+  database: <%= ENV['DB_NAME'] %>
+
+
+development:
+  primary: &primary_development
+    <<: *default
+    database: rails_app_development
+  cache:
+    <<: *primary_development
+    database: rails_app_development_cache
+    migrations_paths: db/cache_migrate
+
+test:
+  <<: *default
+  database: rails_app_test
+
+test:
+  <<: *default
+  database: rails_app_test
+
+production:
+  primary: &primary_production
+    <<: *default
+  cache:
+    <<: *primary_production
+    database: <%= "#{ENV['DB_NAME']}_cache" %>
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: <%= "#{ENV['DB_NAME']}_queue" %>
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: <%= "#{ENV['DB_NAME']}_cable" %>
+    migrations_paths: db/cable_migrate
