@@ -17,7 +17,7 @@ services:
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - "33000:3000"
     volumes:
       - type: bind
         source: $PWD
@@ -35,7 +35,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
     ports:
-      - "5432:5432"
+      - "35432:5432"
     volumes:
       - type: volume
         source: db_volume
