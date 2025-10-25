@@ -2,7 +2,7 @@
 
   return (
     <>
-
+        Event List
     </>
   )
 }

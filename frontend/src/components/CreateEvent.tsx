@@ -2,7 +2,7 @@
 
   return (
     <>
-
+      Create Event
     </>
   )
 }
